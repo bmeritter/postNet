@@ -1,11 +1,11 @@
 /**
  * Created by ritter on 16-7-28.
  */
+"use strict";
 
 function barcodeToPost(barcodes) {
-
     let allBarcodes = loadAllBarcodes();
-    let validation = isValidationBarcode(barcodes)
+    let validation = isValidationBarcode(barcodes);
     if (validation) {
         let postArr = formateBarcode(barcodes, allBarcodes);
         if (checkValidation(postArr)) {
@@ -20,32 +20,25 @@ function loadAllBarcodes() {
 }
 
 function isValidationBarcode(barcodes) {
-    if (barcodes.startsWith('| ') && barcodes.endsWith(' |')) {
-        return true;
-    }
-    return false;
+    return (/^\|[|: ]+\|$/.test(barcodes));
 }
 
 function formateBarcode(barcodes, allBarcodes) {
     let barArray = barcodes.substring(1, barcodes.length - 1).split(' ');
     let postArr = [];
-    for (let b of barArray) {
-        let exit = allBarcodes.find(function (a) {
-            return a === b;
-        })
-        if (exit) {
-            postArr.push(allBarcodes.indexOf(exit))
+    barArray.forEach(function (b) {
+        if (allBarcodes.indexOf(b) !== -1) {
+            postArr.push(allBarcodes.indexOf(b))
         }
-    }
-    //console.log(postArr)
+    });
     return postArr;
 }
 
 function checkValidation(postArr) {
-    let total = 0;
-    for (let i = 0; i < postArr.length - 1; ++i) {
-        total += postArr[i];
-    }
+    let total = postArr.reduce(function (a, b) {
+        return a + b;
+    });
+    total -= postArr[postArr.length - 1];
     if (total % 10 === 0) {
         return postArr[postArr.length - 1] === 0;
     }
@@ -54,14 +47,13 @@ function checkValidation(postArr) {
 
 function formateResult(postArr) {
     let barcode = '';
-
     barcode += postArr.join('').substring(0, postArr.length - 1);
     if (postArr.length === 6) {
         return barcode;
     } else {
-        let temp = barcode.substring(0, 5);
-        let tp = barcode.substring(5, barcode.length);
-        return temp + '-' + tp;
+        let tempFomer = barcode.substring(0, 5);
+        let tempLater = barcode.substring(5, barcode.length);
+        return tempFomer + '-' + tempLater;
     }
 }
 

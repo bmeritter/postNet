@@ -1,6 +1,7 @@
 /**
  * Created by ritter on 16-7-28.
  */
+"use strict";
 
 function postToBarcode(tags) {
     let allBarcodes = loadAllBarcodes();
@@ -19,24 +20,17 @@ function loadAllBarcodes() {
 }
 
 function isValidation(tags) {
-    if (tags.length === 5 || tags.length === 9 || tags.length === 10) {
-        for (let tag of tags.replace('-', '')) {
-            if (tag !== '0' && tag !== '1' && tag !== '2' && tag !== '3' && tag !== '4' && tag !== '5' && tag !== '6' && tag !== '7' && tag !== '8' && tag !== '9') {
-                return false;
-            }
-        }
+    if (/^\d{5}$|^\d{9}$|^\d{5}-\d{4}$/.test(tags)) {
         return tags;
     }
     return false;
 }
 
 function fomateCode(tags) {
-    let result = [];
-    tags = tags.replace('-', '');
-    for (let tag of tags) {
-        result.push(Number(tag))
-    }
-    return result;
+    tags = tags.replace('-', '').split('');
+    return tags.map(function (tag) {
+        return parseInt(tag);
+    })
 }
 
 function calculateValidaion(result) {
@@ -44,20 +38,18 @@ function calculateValidaion(result) {
         return a + b;
     });
     let validate = total % 10;
-    if (validate === 0) {
-        return validate;
-    }
-    return 10 - validate;
+    return validate === 0 ? validate : 10 - validate;
 }
 
 function getBarcodes(result, valite, allBarcodes) {
     let barcodes = '|';
-    for (let r of result) {
-        barcodes += allBarcodes[r];
-    }
+    barcodes += result.map(function (r) {
+        return r = allBarcodes[r];
+    }).join('');
     barcodes += allBarcodes[valite] + '|';
     return barcodes;
 }
+
 
 module.exports = {
     postToBarcode: postToBarcode,

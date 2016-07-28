@@ -1,6 +1,7 @@
 /**
  * Created by ritter on 16-7-28.
  */
+"use strict"
 const a = require('../../transfomer/test.js');
 
 describe('sum', function () {
