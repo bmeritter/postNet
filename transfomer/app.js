@@ -10,8 +10,6 @@ const barcodeAction = require('./actions/barcodeAction')
 
 const actions = [initAction, postAction, barcodeAction];
 
-//console.log(actions)
-
 let currentAction = 'init';
 console.log(actions.find(item => item.name === currentAction).help);
 

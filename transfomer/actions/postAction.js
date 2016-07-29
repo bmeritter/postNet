@@ -3,22 +3,24 @@
  */
 
 const fnPost = require('../postToBarcode');
+const createAction = require('./createAction');
 
 const name = 'inputPost';
-const help = 'input post state:\ninput post or input q to init';
+const help = 'input post state:\ninput post or input q to exit';
 
-function postAction() {
-    return {
-        name: name,
-        help: help,
-        doAction: function (cmd) {
-            if (cmd.trim() === 'q') {
-                return 'init';
-            }
-            console.log(fnPost.postToBarcode(cmd.trim()) + '\n\tBye!\n');
-            return 'inputPost';
+class inputPost extends createAction {
+
+    constructor(name, help) {
+        super(name, help);
+    }
+
+    doAction(cmd) {
+        if (cmd.trim() === 'q') {
+            return 'init';
         }
+        console.log(fnPost.postToBarcode(cmd.trim()) + '\n\tBye!\n');
+        return 'inputPost';
     }
 }
 
-module.exports = postAction();
+module.exports = new inputPost(name, help);

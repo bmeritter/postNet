@@ -3,22 +3,24 @@
  */
 
 const fnBarcode = require('../barcodeToPost');
+const createAction = require('./createAction');
 
 const name = 'inputBarcode';
 const help = 'input barcode state:\ninput baecode or input q init ';
 
-function barcodeAction() {
-    return {
-        name: name,
-        help: help,
-        doAction: function (cmd) {
-            if (cmd.trim() === 'q') {
-                return 'init';
-            }
-            console.log(fnBarcode.barcodeToPost(cmd.trim()) + "\n\tBye!");
-            return 'inputBarcode';
+class barcodeAction extends createAction {
+
+    constructor(name, help) {
+        super(name, help);
+    }
+
+    doAction(cmd) {
+        if (cmd.trim() === 'q') {
+            return 'init';
         }
+        console.log(fnBarcode.barcodeToPost(cmd.trim()) + "\n\tBye!");
+        return 'inputBarcode';
     }
 }
 
-module.exports = barcodeAction();
+module.exports = new barcodeAction(name, help);

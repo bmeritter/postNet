@@ -2,12 +2,14 @@
  * Created by ritter on 16-7-29.
  */
 
-function createAction(name, help, doAction) {
-    return {
-        name: name,
-        help: help,
-        doAction: doAction
-    };
+class createAction {
+    constructor(name, help) {
+        this.name = name;
+        this.help = help;
+    }
+    doAction() {
+
+    }
 }
 
 module.exports = createAction;
