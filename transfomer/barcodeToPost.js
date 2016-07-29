@@ -26,7 +26,7 @@ function isValidationBarcode(barcodes) {
 function formateBarcode(barcodes, allBarcodes) {
     let barArray = barcodes.substring(1, barcodes.length - 1).split(' ');
     let postArr = [];
-    barArray.forEach(function (b) {
+    barArray.map(function (b) {
         if (allBarcodes.indexOf(b) !== -1) {
             postArr.push(allBarcodes.indexOf(b))
         }

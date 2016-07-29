@@ -29,7 +29,7 @@ var replServer = repl.start({prompt: "> ", eval: handleCmd});
 
 const actions = [{
     name: 'init',
-    help: "\tinit interface:\n1-post to barcode\n2-barcode to post\nq-exit",
+    help: "init interface:\n1-post to barcode\n2-barcode to post\nq-exit",
     doAction: function (cmd) {
         switch (cmd) {
             case '1':
@@ -49,7 +49,7 @@ const actions = [{
     name: 'inputPost',
     help: 'input post state',
     doAction: function (cmd) {
-        console.log(fnPost.postToBarcode(cmd.trim()) + '\n\tBye!');
+        console.log(fnPost.postToBarcode(cmd.trim()) + '\n\tBye!\n');
         return 'init';
     }
 }, {
@@ -63,5 +63,3 @@ const actions = [{
 
 let currentAction = 'init';
 console.log(actions.find(item => item.name === currentAction).help);
-
-

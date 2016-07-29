@@ -5,8 +5,7 @@
 
 function postToBarcode(tags) {
     let allBarcodes = loadAllBarcodes();
-    let validation = isValidation(tags);
-    if (validation) {
+    if (isValidation(tags)) {
         let result = fomateCode(tags);
         let valite = calculateValidaion(result);
         let barcodes = getBarcodes(result, valite, allBarcodes);
@@ -14,6 +13,7 @@ function postToBarcode(tags) {
     }
     return 'error';
 }
+
 
 function loadAllBarcodes() {
     return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
