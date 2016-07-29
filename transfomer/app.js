@@ -1,5 +1,6 @@
 'use strict';
 
+debugger;
 const repl = require('repl');
 
 function switchRouter(context, done) {
@@ -67,5 +68,3 @@ const actions = [{
 
 let currentAction = 'init';
 console.log(actions.find(item => item.name === currentAction).help);
-
-

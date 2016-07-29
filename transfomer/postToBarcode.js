@@ -14,7 +14,6 @@ function postToBarcode(tags) {
     return 'error';
 }
 
-
 function loadAllBarcodes() {
     return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
 }
@@ -49,7 +48,6 @@ function getBarcodes(result, valite, allBarcodes) {
     barcodes += allBarcodes[valite] + '|';
     return barcodes;
 }
-
 
 module.exports = {
     postToBarcode: postToBarcode,
