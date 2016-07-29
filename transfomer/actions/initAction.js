@@ -4,7 +4,6 @@
 
 const createAction = require('./createAction');
 
-
 const name = 'init';
 const help = 'init interface:\n1-post to barcode\n2-barcode to post\nq-exit';
 

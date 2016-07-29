@@ -18,7 +18,7 @@ class inputPost extends createAction {
         if (cmd.trim() === 'q') {
             return 'init';
         }
-        console.log(fnPost.postToBarcode(cmd.trim()) + '\n\tBye!\n');
+        console.log(fnPost.postToBarcode(cmd.trim()) + '\n\n');
         return 'inputPost';
     }
 }

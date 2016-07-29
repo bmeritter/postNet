@@ -18,7 +18,7 @@ class barcodeAction extends createAction {
         if (cmd.trim() === 'q') {
             return 'init';
         }
-        console.log(fnBarcode.barcodeToPost(cmd.trim()) + "\n\tBye!");
+        console.log(fnBarcode.barcodeToPost(cmd.trim()) + "\n");
         return 'inputBarcode';
     }
 }
