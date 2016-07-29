@@ -3,10 +3,8 @@
  */
 'use strict';
 
-debugger;
-
-const fnBarcode = require('./barcodeToPost')
-const fnPost = require('./postToBarcode')
+const fnBarcode = require('./barcodeToPost');
+const fnPost = require('./postToBarcode');
 
 const repl = require('repl');
 
